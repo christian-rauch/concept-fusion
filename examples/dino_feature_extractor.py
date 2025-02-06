@@ -124,7 +124,7 @@ class ViTExtractor:
             h0 = 1 + (h - patch_size) // stride_hw[0]
             assert (
                 w0 * h0 == npatch
-            ), f"""got wrong grid size for {h}x{w} with patch_size {patch_size} and 
+            ), f"""got wrong grid size for {h}x{w} with patch_size {patch_size} and
                                             stride {stride_hw} got {h0}x{w0}={h0 * w0} expecting {npatch}"""
             # we add a small number to avoid floating point error in the interpolation
             # see discussion at https://github.com/facebookresearch/dino/issues/8
@@ -379,7 +379,7 @@ class ViTExtractor:
             "query",
             "value",
             "token",
-        ], f"""{facet} is not a supported facet for descriptors. 
+        ], f"""{facet} is not a supported facet for descriptors.
                                                              choose from ['key' | 'query' | 'value' | 'token'] """
         self._extract_features(batch, [layer], facet)
         x = self._feats[0]
@@ -454,22 +454,22 @@ if __name__ == "__main__":
         "--stride",
         default=4,
         type=int,
-        help="""stride of first convolution layer. 
+        help="""stride of first convolution layer.
                                                               small stride -> higher resolution.""",
     )
     parser.add_argument(
         "--model_type",
         default="dino_vits8",
         type=str,
-        help="""type of model to extract. 
-                        Choose from [dino_vits8 | dino_vits16 | dino_vitb8 | dino_vitb16 | vit_small_patch8_224 | 
+        help="""type of model to extract.
+                        Choose from [dino_vits8 | dino_vits16 | dino_vitb8 | dino_vitb16 | vit_small_patch8_224 |
                         vit_small_patch16_224 | vit_base_patch8_224 | vit_base_patch16_224]""",
     )
     parser.add_argument(
         "--facet",
         default="key",
         type=str,
-        help="""facet to create descriptors from. 
+        help="""facet to create descriptors from.
                                                                     options: ['key' | 'query' | 'value' | 'token']""",
     )
     parser.add_argument(
