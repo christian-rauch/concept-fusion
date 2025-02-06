@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Script to provide a unified interface to access models
 """

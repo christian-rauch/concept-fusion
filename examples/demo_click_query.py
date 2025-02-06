@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Script to run gradslam over a sequence from ICL and visualize self-similarity
 over fused feature maps (assumes we point-and-click a 3D map point to compute

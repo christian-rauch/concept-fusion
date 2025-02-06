@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Code from: https://github.com/ShirAmir/dino-vit-features/blob/65797107585100420bffc0d667431aa1efef0457/extractor.py
 """
