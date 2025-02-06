@@ -94,7 +94,7 @@ def main():
     torch.autograd.set_grad_enabled(False)
 
     args = tyro.cli(ProgramArgs)
-    
+
     # dataconfig = load_dataset_config(args.dataconfig_path)
     dataset = get_dataset(
         dataconfig_path=args.dataconfig_path,
@@ -151,12 +151,12 @@ def main():
         )
         with open(maskfile, "rb") as f:
             masks = pkl.load(f)
-        
+
         imgfile = dataset.color_paths[idx]
         img = cv2.imread(imgfile)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         LOAD_IMG_HEIGHT, LOAD_IMG_WIDTH = img.shape[0], img.shape[1]
-        
+
         global_feat = None
         with torch.cuda.amp.autocast():
             # print("Extracting global CLIP features...")
@@ -186,7 +186,7 @@ def main():
             roi_nonzero_inds.append(nonzero_inds)
             _sim = cosine_similarity(global_feat, roifeat)
             similarity_scores.append(_sim)
-        
+
         similarity_scores = torch.cat(similarity_scores)
         softmax_scores = torch.nn.functional.softmax(similarity_scores, dim=0)
         outfeat = torch.zeros(LOAD_IMG_HEIGHT, LOAD_IMG_WIDTH, feat_dim, dtype=torch.half)
@@ -237,7 +237,7 @@ def main():
             os.path.splitext(os.path.basename(dataset.color_paths[idx]))[0] + ".pt",
         )
         torch.save(outfeat.detach().cpu(), savefile)
-        
+
 
 
 if __name__ == "__main__":
