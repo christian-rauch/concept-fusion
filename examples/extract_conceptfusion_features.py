@@ -173,7 +173,7 @@ def main():
         roi_nonzero_inds = []
         similarity_scores = []
         for maskidx in range(len(masks)):
-            _x, _y, _w, _h = tuple(masks[maskidx]["bbox"])  # xywh bounding box
+            _x, _y, _w, _h = tuple([int(v) for v in masks[maskidx]["bbox"]])  # xywh bounding box
             seg = masks[maskidx]["segmentation"]
             nonzero_inds = torch.argwhere(torch.from_numpy(masks[maskidx]["segmentation"]))
             # Note: Image is (H, W, 3). In SAM output, y coords are along height, x along width
